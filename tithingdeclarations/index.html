@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tithing Declarations · Mapleton 44th Ward</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Georgia', serif;
+      background:
+        linear-gradient(rgba(255,255,255,0.84), rgba(255,255,255,0.42)),
+        url('../InGreenPastures3.png') center / cover no-repeat;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2.5rem 1rem 4rem;
+      color: #2c3a4a;
+    }
+
+    /* ── Header ── */
+    .header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1.8rem;
+      text-align: center;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.8rem;
+      color: #4a6fa5;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.15s;
+    }
+    .back-link:hover { color: #1d3557; }
+    .ward-name {
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: #1d3557;
+    }
+    .ward-sub {
+      font-size: 0.78rem;
+      color: #6b7a8d;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .page-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: #1d3557;
+      margin-top: 2.4rem;
+      padding-bottom: 0.25rem;
+      border-bottom: 2px solid #c9b882;
+    }
+
+    /* ── Group ── */
+    .group {
+      width: 100%;
+      max-width: 480px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      margin-bottom: 1.6rem;
+    }
+    .group-heading {
+      display: flex;
+      align-items: baseline;
+      gap: 0.55rem;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #1d3557;
+      letter-spacing: 0.03em;
+      padding: 0 0.15rem 0.1rem;
+      border-bottom: 2px solid #c9b882;
+    }
+    .group-heading .dur {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #6b7a8d;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── Card (button row) ── */
+    .card {
+      background: #ffffff;
+      border: 1px solid #dde3ed;
+      border-radius: 14px;
+      box-shadow: 0 2px 10px rgba(29,53,87,0.07);
+      overflow: hidden;
+      transition: box-shadow 0.2s, transform 0.15s;
+    }
+    .card:hover { box-shadow: 0 6px 20px rgba(29,53,87,0.13); transform: translateY(-1px); }
+
+    .card-top { display: flex; align-items: stretch; }
+
+    .main-link {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.9rem 1rem;
+      text-decoration: none;
+      color: #1d3557;
+      transition: background 0.15s;
+      min-width: 0;
+    }
+    .main-link:hover { background: #f4f7fc; }
+    .link-icon {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      color: #4a6fa5;
+      opacity: 0.7;
+      transition: opacity 0.15s, transform 0.15s;
+    }
+    .main-link:hover .link-icon { opacity: 1; transform: translateX(2px); }
+    .link-label { font-size: 0.95rem; font-weight: 600; line-height: 1.3; }
+    .link-sub { display: block; font-size: 0.72rem; font-weight: 400; color: #6b7a8d; margin-top: 0.15rem; }
+
+    /* QR sub-button */
+    .qr-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.2rem;
+      padding: 0 0.85rem;
+      background: #f9fafc;
+      cursor: pointer;
+      border: none;
+      border-left: 1px solid #dde3ed;
+      color: #4a6fa5;
+      font-size: 0.68rem;
+      font-family: inherit;
+      letter-spacing: 0.02em;
+      line-height: 1.2;
+      text-align: center;
+      transition: background 0.15s, color 0.15s;
+      flex-shrink: 0;
+      min-width: 62px;
+    }
+    .qr-btn:hover { background: #eaf0fb; color: #1d3557; }
+    .qr-btn svg { flex-shrink: 0; }
+
+    /* ── Side-by-side counselor pair ── */
+    .pair { display: flex; gap: 0.9rem; }
+    .pair > .card { flex: 1; min-width: 0; }
+    .card--stack .card-top { flex-direction: column; align-items: stretch; }
+    .card--stack .main-link {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0.45rem;
+      padding: 0.95rem 0.6rem 0.8rem;
+    }
+    .counselor-name { font-size: 0.98rem; font-weight: 700; color: #1d3557; }
+    .counselor-sub {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.72rem;
+      color: #6b7a8d;
+    }
+    .counselor-sub .chev {
+      display: inline-flex;
+      color: #4a6fa5;
+      opacity: 0.75;
+      transition: transform 0.15s, opacity 0.15s;
+    }
+    .card--stack .main-link:hover .counselor-sub .chev { opacity: 1; transform: translateX(2px); }
+    .card--stack .qr-btn {
+      border-left: none;
+      border-top: 1px solid #dde3ed;
+      flex-direction: row;
+      width: 100%;
+      min-width: 0;
+      padding: 0.5rem;
+      gap: 0.4rem;
+    }
+
+    /* ── Info note ── */
+    .note-card {
+      width: 100%;
+      max-width: 480px;
+      background: #fbf7ec;
+      border: 1px solid #e6dcbf;
+      border-radius: 14px;
+      padding: 1rem 1.1rem 1.1rem;
+      margin-bottom: 1.6rem;
+      box-shadow: 0 2px 10px rgba(29,53,87,0.06);
+    }
+    .note-heading {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #8a6d1f;
+      margin-bottom: 0.4rem;
+    }
+    .note-card p { font-size: 0.83rem; color: #5c5638; line-height: 1.5; margin-bottom: 0.8rem; }
+    .note-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      background: #1d3557;
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 0.55rem 1rem;
+      border-radius: 20px;
+      transition: background 0.15s;
+    }
+    .note-btn:hover { background: #24406a; }
+
+    /* ── Seasonal closed message ── */
+    .season-closed {
+      width: 100%;
+      max-width: 480px;
+      background: #ffffff;
+      border: 1px dashed #c2cfe0;
+      border-radius: 14px;
+      padding: 1.3rem 1.2rem;
+      text-align: center;
+      color: #6b7a8d;
+      font-size: 0.86rem;
+      line-height: 1.55;
+    }
+    .season-closed .sc-title { display:block; font-weight:700; color:#1d3557; font-size:0.95rem; margin-bottom:0.4rem; }
+
+    /* ── QR Modal ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(20,30,48,0.45);
+      backdrop-filter: blur(3px);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: #fff;
+      border-radius: 18px;
+      padding: 1.8rem 2rem;
+      max-width: 300px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.22);
+      position: relative;
+    }
+    .modal-title { font-size: 0.95rem; font-weight: 700; color: #1d3557; margin-bottom: 0.3rem; }
+    .modal-url { font-size: 0.68rem; color: #8fa0b5; font-family: 'Courier New', monospace; margin-bottom: 1rem; word-break: break-all; }
+    .modal img { width: 200px; height: 200px; border-radius: 8px; border: 1px solid #e0e6ef; }
+    .modal-close {
+      margin-top: 1.1rem;
+      display: inline-block;
+      padding: 0.45rem 1.4rem;
+      border-radius: 20px;
+      border: 1.5px solid #c2cfe0;
+      background: none;
+      color: #4a6fa5;
+      font-size: 0.82rem;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.15s;
+    }
+    .modal-close:hover { background: #f0f4fb; }
+
+    /* ── Bottom back link ── */
+    .foot-back { margin-top: 0.6rem; }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <a class="back-link" href="../">&larr; Back to Ward Links</a>
+    <div class="ward-name">Mapleton 44th Ward</div>
+    <div class="ward-sub">Not an official website of the LDS Church</div>
+    <div class="page-title">Tithing Declarations</div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       SEASONAL TOGGLE — Tithing Declaration scheduling runs roughly
+       October–December. To open or close the season, flip ONE value in
+       the <script> at the bottom of this page:
+
+           const TITHING_OPEN = true;   // season open  — shows the buttons
+           const TITHING_OPEN = false;  // off-season   — shows a closed notice
+
+       No markup edits needed.
+       ══════════════════════════════════════════════════════════════════ -->
+
+  <!-- Season OPEN: booking buttons -->
+  <div class="group" id="tithing-open" style="display:none;">
+    <div class="group-heading">Schedule a Tithing Declaration <span class="dur">10 min</span></div>
+
+    <div class="pair">
+      <!-- Bro. Spanos -->
+      <div class="card card--stack">
+        <div class="card-top">
+          <a class="main-link" href="https://calendar.app.google/1Y3pjW9KEZ8DCdcT9" target="_blank" rel="noopener">
+            <span class="counselor-name">Bro. Spanos</span>
+            <span class="counselor-sub"><span class="chev"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>Tap to schedule</span>
+          </a>
+          <button class="qr-btn" onclick="openQR('Tithing Declaration — Bro. Spanos','https://calendar.app.google/1Y3pjW9KEZ8DCdcT9')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="3" height="3"/><rect x="18" y="18" width="3" height="3"/></svg>
+            Show QR Code
+          </button>
+        </div>
+      </div>
+
+      <!-- Bro. Mahaffey -->
+      <div class="card card--stack">
+        <div class="card-top">
+          <a class="main-link" href="https://calendar.app.google/GxNoHvHh9Yn5Xpza8" target="_blank" rel="noopener">
+            <span class="counselor-name">Bro. Mahaffey</span>
+            <span class="counselor-sub"><span class="chev"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>Tap to schedule</span>
+          </a>
+          <button class="qr-btn" onclick="openQR('Tithing Declaration — Bro. Mahaffey','https://calendar.app.google/GxNoHvHh9Yn5Xpza8')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="3" height="3"/><rect x="18" y="18" width="3" height="3"/></svg>
+            Show QR Code
+          </button>
+        </div>
+      </div>
+    </div>
+    <p style="font-size:0.78rem;color:#6b7a8d;text-align:center;line-height:1.45;padding:0 0.3rem;">Either counselor can meet with you — if one calendar is full, please try the other.</p>
+  </div>
+
+  <!-- Season CLOSED: off-season notice -->
+  <div class="season-closed" id="tithing-closed" style="display:none;">
+    <span class="sc-title">Tithing Declaration scheduling isn't open right now</span>
+    Appointments are typically available October through December. Please check back during the declaration season, or contact a member of the bishopric.
+  </div>
+
+  <a class="back-link foot-back" href="../">&larr; Back to Ward Links</a>
+
+  <!-- QR Modal -->
+  <div class="modal-overlay" id="qr-overlay" onclick="closeQR(event)">
+    <div class="modal">
+      <div class="modal-title" id="qr-title"></div>
+      <div class="modal-url" id="qr-url"></div>
+      <img id="qr-img" src="" alt="QR Code" />
+      <br/>
+      <button class="modal-close" onclick="closeModal()">Close</button>
+    </div>
+  </div>
+
+  <script>
+    // ─── SEASONAL TOGGLE ────────────────────────────────────────────────
+    // true  = season open  (shows the Spanos / Mahaffey booking buttons)
+    // false = off-season   (shows the "not open right now" notice instead)
+    const TITHING_OPEN = true;
+    // ────────────────────────────────────────────────────────────────────
+
+    document.getElementById('tithing-open').style.display   = TITHING_OPEN ? 'flex' : 'none';
+    document.getElementById('tithing-closed').style.display = TITHING_OPEN ? 'none' : 'block';
+
+    function openQR(label, url) {
+      document.getElementById('qr-title').textContent = label;
+      document.getElementById('qr-url').textContent = url.replace('https://', '').replace('http://', '');
+      const encoded = encodeURIComponent(url);
+      document.getElementById('qr-img').src =
+        'https://api.qrserver.com/v1/create-qr-code/?size=200x200&margin=10&data=' + encoded;
+      document.getElementById('qr-overlay').classList.add('open');
+    }
+    function closeModal() { document.getElementById('qr-overlay').classList.remove('open'); }
+    function closeQR(e) { if (e.target === document.getElementById('qr-overlay')) closeModal(); }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  </script>
+</body>
+</html>

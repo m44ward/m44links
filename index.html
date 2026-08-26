@@ -85,6 +85,39 @@
       max-width: 480px;
     }
 
+    /* ── Two columns ── */
+    .columns {
+      display: flex;
+      gap: 1.25rem;
+      width: 100%;
+      max-width: 960px;
+      align-items: flex-start;
+      justify-content: center;
+    }
+    .column {
+      flex: 1;
+      min-width: 0;
+      max-width: 460px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+    .column-heading {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #1d3557;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      text-align: center;
+      padding-bottom: 0.35rem;
+      border-bottom: 2px solid #c9b882;
+      margin-bottom: 0.1rem;
+    }
+    @media (max-width: 760px) {
+      .columns { flex-direction: column; align-items: center; gap: 1.6rem; }
+      .column { width: 100%; max-width: 480px; }
+    }
+
     /* ── Card (button row) ── */
     .card {
       background: #ffffff;
@@ -104,6 +137,7 @@
     /* Main link button */
     .main-link {
       flex: 1;
+      min-width: 0;
       display: flex;
       align-items: center;
       gap: 0.75rem;
@@ -285,96 +319,166 @@
   </div>
 
   <!-- Link Cards -->
-  <div class="links">
+  <div class="columns">
 
-    <!-- 1. Ward Bulletin -->
-    <div class="card">
-      <div class="card-top">
-        <a class="main-link" href="https://tinyurl.com/m44bulletin" target="_blank" rel="noopener">
-          <span class="link-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
-          <span class="link-label">Show the Ward Bulletin</span>
-        </a>
-        <button class="qr-btn" onclick="openQR('Ward Bulletin','https://tinyurl.com/m44bulletin')">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="3" height="3"/><rect x="18" y="18" width="3" height="3"/></svg>
-          Show<br/>QR Code
-        </button>
+    <!-- ═══════════ LEFT COLUMN: Ward Links ═══════════ -->
+    <div class="column">
+      <div class="column-heading">Ward Links</div>
+
+      <!-- Ward Bulletin -->
+      <div class="card">
+        <div class="card-top">
+          <a class="main-link" href="https://zippa.run/m44Bulletin" target="_blank" rel="noopener">
+            <span class="link-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+            <span class="link-label">Show the Ward Bulletin</span>
+          </a>
+          <button class="qr-btn" onclick="openQR('Ward Bulletin','https://zippa.run/m44Bulletin')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="3" height="3"/><rect x="18" y="18" width="3" height="3"/></svg>
+            Show<br/>QR Code
+          </button>
+        </div>
+        <div class="tiny-url">zippa.run/m44Bulletin</div>
       </div>
-      <div class="tiny-url">tinyurl.com/m44bulletin</div>
+
+      <!-- New Member Form -->
+      <div class="card">
+        <div class="card-top">
+          <a class="main-link" href="https://zippa.run/m44Welcome" target="_blank" rel="noopener">
+            <span class="link-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+            <span class="link-label">Fill out New Member Form</span>
+          </a>
+          <button class="qr-btn" onclick="openQR('New Member Form','https://zippa.run/m44Welcome')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="3" height="3"/><rect x="18" y="18" width="3" height="3"/></svg>
+            Show<br/>QR Code
+          </button>
+        </div>
+        <div class="tiny-url">zippa.run/m44Welcome</div>
+      </div>
+
+      <!-- Join Discord -->
+      <div class="card">
+        <div class="card-top">
+          <a class="main-link" href="https://zippa.run/m44Discord" target="_blank" rel="noopener">
+            <span class="link-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+            <span class="link-label">Join Discord (Chat Rooms)</span>
+          </a>
+          <button class="qr-btn" onclick="openQR('Join Discord','https://zippa.run/m44Discord')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="3" height="3"/><rect x="18" y="18" width="3" height="3"/></svg>
+            Show<br/>QR Code
+          </button>
+        </div>
+        <div class="tiny-url">zippa.run/m44Discord</div>
+      </div>
+
+      <!-- Order Free Church Magazines -->
+      <div class="card">
+        <div class="card-top">
+          <a class="main-link" href="https://zippa.run/FreeChurchMags" target="_blank" rel="noopener">
+            <span class="link-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+            <span class="link-label">Order Free Church Magazines</span>
+          </a>
+          <button class="qr-btn" onclick="openQR('Order Free Church Magazines','https://zippa.run/FreeChurchMags')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="3" height="3"/><rect x="18" y="18" width="3" height="3"/></svg>
+            Show<br/>QR Code
+          </button>
+        </div>
+        <div class="tiny-url">zippa.run/FreeChurchMags</div>
+      </div>
+
+      <!-- Stake Website -->
+      <div class="card">
+        <div class="card-top">
+          <a class="main-link" href="https://zippa.run/MapleCanyonStake" target="_blank" rel="noopener">
+            <span class="link-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+            <span class="link-label">Visit the Stake Website</span>
+          </a>
+          <button class="qr-btn" onclick="openQR('Stake Website','https://zippa.run/MapleCanyonStake')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="3" height="3"/><rect x="18" y="18" width="3" height="3"/></svg>
+            Show<br/>QR Code
+          </button>
+        </div>
+        <div class="tiny-url">zippa.run/MapleCanyonStake</div>
+      </div>
     </div>
 
-    <!-- 2. New Member Form -->
-    <div class="card">
-      <div class="card-top">
-        <a class="main-link" href="http://tiny.cc/m44welcome" target="_blank" rel="noopener">
-          <span class="link-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
-          <span class="link-label">Fill out New Member Form</span>
-        </a>
-        <button class="qr-btn" onclick="openQR('New Member Form','http://tiny.cc/m44welcome')">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="3" height="3"/><rect x="18" y="18" width="3" height="3"/></svg>
-          Show<br/>QR Code
-        </button>
-      </div>
-      <div class="tiny-url">tiny.cc/m44welcome</div>
-    </div>
+    <!-- ═══════════ RIGHT COLUMN: Interviews ═══════════ -->
+    <div class="column">
+      <div class="column-heading">Interviews</div>
 
-    <!-- 3. Join Discord -->
-    <div class="card">
-      <div class="card-top">
-        <a class="main-link" href="https://tinyurl.com/m44discord2" target="_blank" rel="noopener">
-          <span class="link-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
-          <span class="link-label">Join Discord (Chat Rooms)</span>
-        </a>
-        <button class="qr-btn" onclick="openQR('Join Discord','https://tinyurl.com/m44discord2')">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="3" height="3"/><rect x="18" y="18" width="3" height="3"/></svg>
-          Show<br/>QR Code
-        </button>
+      <!-- Schedule Interview with Bishop -->
+      <div class="card">
+        <div class="card-top">
+          <a class="main-link" href="https://zippa.run/m44BshpInt" target="_blank" rel="noopener">
+            <span class="link-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+            <span class="link-label">Schedule Interview with Bishop</span>
+          </a>
+          <button class="qr-btn" onclick="openQR('Interview with Bishop','https://zippa.run/m44BshpInt')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="3" height="3"/><rect x="18" y="18" width="3" height="3"/></svg>
+            Show<br/>QR Code
+          </button>
+        </div>
+        <div class="tiny-url">zippa.run/m44BshpInt</div>
       </div>
-      <div class="tiny-url">tinyurl.com/m44discord2</div>
-    </div>
 
-    <!-- 4. Schedule Interview -->
-    <div class="card">
-      <div class="card-top">
-        <a class="main-link" href="http://tiny.cc/bishopappt" target="_blank" rel="noopener">
-          <span class="link-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
-          <span class="link-label">Schedule an Interview</span>
-        </a>
-        <button class="qr-btn" onclick="openQR('Schedule an Interview','http://tiny.cc/bishopappt')">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="3" height="3"/><rect x="18" y="18" width="3" height="3"/></svg>
-          Show<br/>QR Code
-        </button>
+      <!-- Schedule Setting Apart -->
+      <div class="card">
+        <div class="card-top">
+          <a class="main-link" href="https://zippa.run/m44SetApart" target="_blank" rel="noopener">
+            <span class="link-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+            <span class="link-label">Schedule Setting Apart</span>
+          </a>
+          <button class="qr-btn" onclick="openQR('Setting Apart','https://zippa.run/m44SetApart')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="3" height="3"/><rect x="18" y="18" width="3" height="3"/></svg>
+            Show<br/>QR Code
+          </button>
+        </div>
+        <div class="tiny-url">zippa.run/m44SetApart</div>
       </div>
-      <div class="tiny-url">tiny.cc/bishopappt</div>
-    </div>
 
-    <!-- 5. Schedule Setting Apart -->
-    <div class="card">
-      <div class="card-top">
-        <a class="main-link" href="http://tiny.cc/setmeapart" target="_blank" rel="noopener">
-          <span class="link-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
-          <span class="link-label">Schedule a Setting Apart</span>
-        </a>
-        <button class="qr-btn" onclick="openQR('Schedule a Setting Apart','http://tiny.cc/setmeapart')">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="3" height="3"/><rect x="18" y="18" width="3" height="3"/></svg>
-          Show<br/>QR Code
-        </button>
+      <!-- Schedule Temple Recommend Renewal -->
+      <div class="card">
+        <div class="card-top">
+          <a class="main-link" href="https://zippa.run/m44Tmpl" target="_blank" rel="noopener">
+            <span class="link-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+            <span class="link-label">Schedule Temple Recommend Renewal</span>
+          </a>
+          <button class="qr-btn" onclick="openQR('Temple Recommend Renewal','https://zippa.run/m44Tmpl')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="3" height="3"/><rect x="18" y="18" width="3" height="3"/></svg>
+            Show<br/>QR Code
+          </button>
+        </div>
+        <div class="tiny-url">zippa.run/m44Tmpl</div>
       </div>
-      <div class="tiny-url">tiny.cc/setmeapart</div>
-    </div>
 
-    <!-- 6. Stake Website -->
-    <div class="card">
-      <div class="card-top">
-        <a class="main-link" href="http://tiny.cc/maplecanyonstake" target="_blank" rel="noopener">
-          <span class="link-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
-          <span class="link-label">Visit the Stake Website</span>
-        </a>
-        <button class="qr-btn" onclick="openQR('Stake Website','http://tiny.cc/maplecanyonstake')">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="3" height="3"/><rect x="18" y="18" width="3" height="3"/></svg>
-          Show<br/>QR Code
-        </button>
+      <!-- Schedule Temple Recommend Interview (1st time) -->
+      <div class="card">
+        <div class="card-top">
+          <a class="main-link" href="https://zippa.run/m44TmplBshp" target="_blank" rel="noopener">
+            <span class="link-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+            <span class="link-label">Schedule Temple Rec Interview <span style="font-weight:400;color:#6b7a8d;">(1st time)</span></span>
+          </a>
+          <button class="qr-btn" onclick="openQR('Temple Recommend Interview (1st time)','https://zippa.run/m44TmplBshp')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="3" height="3"/><rect x="18" y="18" width="3" height="3"/></svg>
+            Show<br/>QR Code
+          </button>
+        </div>
+        <div class="tiny-url">zippa.run/m44TmplBshp</div>
       </div>
-      <div class="tiny-url">tiny.cc/maplecanyonstake</div>
+
+      <!-- Schedule Tithing Declaration -->
+      <div class="card">
+        <div class="card-top">
+          <a class="main-link" href="https://zippa.run/m44Tithe" target="_blank" rel="noopener">
+            <span class="link-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+            <span class="link-label">Schedule Tithing Declaration</span>
+          </a>
+          <button class="qr-btn" onclick="openQR('Tithing Declaration','https://zippa.run/m44Tithe')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="3" height="3"/><rect x="18" y="18" width="3" height="3"/></svg>
+            Show<br/>QR Code
+          </button>
+        </div>
+        <div class="tiny-url">zippa.run/m44Tithe</div>
+      </div>
     </div>
 
   </div>
