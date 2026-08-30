@@ -332,38 +332,22 @@
   <div class="group" id="tithing-open" style="display:none;">
     <div class="group-heading">Schedule a Tithing Declaration <span class="dur">10 min</span></div>
 
-    <div class="pair">
-      <!-- Bro. Spanos -->
-      <div class="card card--stack">
-        <div class="card-top">
-          <a class="main-link" href="https://calendar.app.google/1Y3pjW9KEZ8DCdcT9" target="_blank" rel="noopener">
-            <span class="counselor-name">Bro. Spanos</span>
-            <span class="counselor-sub"><span class="chev"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>Tap to schedule</span>
-          </a>
-          <button class="qr-btn" onclick="openQR('Tithing Declaration — Bro. Spanos','https://calendar.app.google/1Y3pjW9KEZ8DCdcT9')">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="3" height="3"/><rect x="18" y="18" width="3" height="3"/></svg>
-            Show QR Code
-          </button>
-        </div>
-      </div>
-
-      <!-- Bro. Mahaffey -->
-      <div class="card card--stack">
-        <div class="card-top">
-          <a class="main-link" href="https://calendar.app.google/GxNoHvHh9Yn5Xpza8" target="_blank" rel="noopener">
-            <span class="counselor-name">Bro. Mahaffey</span>
-            <span class="counselor-sub"><span class="chev"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>Tap to schedule</span>
-          </a>
-          <button class="qr-btn" onclick="openQR('Tithing Declaration — Bro. Mahaffey','https://calendar.app.google/GxNoHvHh9Yn5Xpza8')">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="3" height="3"/><rect x="18" y="18" width="3" height="3"/></svg>
-            Show QR Code
-          </button>
-        </div>
+    <!-- Tithing declarations are held only by the bishop.
+         href + QR link both point to the ONE bishop tithing booking page. -->
+    <div class="card">
+      <div class="card-top">
+        <a class="main-link" href="https://calendar.app.google/GxNoHvHh9Yn5Xpza8" target="_blank" rel="noopener">
+          <span class="link-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+          <span class="link-label">With Bishop Westover<span class="link-sub">Tap to schedule your tithing declaration</span></span>
+        </a>
+        <button class="qr-btn" onclick="openQR('Tithing Declaration — Bishop Westover','https://calendar.app.google/GxNoHvHh9Yn5Xpza8')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="3" height="3"/><rect x="18" y="18" width="3" height="3"/></svg>
+          Show<br/>QR Code
+        </button>
       </div>
     </div>
     <div class="contact-note">
-      <p>Either counselor can meet with you — if one calendar is full, please try scheduling on the other.</p>
-      <p>If you are unable to find a suitable time, please text or email Bro. Roberts at
+      <p>Tithing declarations are held with the bishop. If you are unable to find a suitable time, please text or email Bro. Roberts at
       <a href="tel:+19282277041">928-227-7041</a> / <a href="mailto:sam.roberts@slrfam.com">sam.roberts@slrfam.com</a></p>
     </div>
   </div>
@@ -389,7 +373,7 @@
 
   <script>
     // ─── SEASONAL TOGGLE ────────────────────────────────────────────────
-    // true  = season open  (shows the Spanos / Mahaffey booking buttons)
+    // true  = season open  (shows the bishop booking button)
     // false = off-season   (shows the "not open right now" notice instead)
     const TITHING_OPEN = true;
     // ────────────────────────────────────────────────────────────────────
