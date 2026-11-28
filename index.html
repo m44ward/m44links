@@ -261,6 +261,56 @@
       transition: background 0.15s;
     }
     .modal-close:hover { background: #f0f4fb; }
+    .modal-acts { display: flex; gap: 0.5rem; justify-content: center; }
+    .modal-acts .modal-close { min-height: 44px; }
+
+    /* ── One-link poster (Print in the QR pop-up) ── */
+    .poster-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 110;
+      background: rgba(20,30,48,0.55);
+      overflow: auto;
+      padding: 1rem;
+      align-items: flex-start;
+      justify-content: center;
+    }
+    .poster-overlay.open { display: flex; }
+    .poster-wrap { width: min(480px, 100%); }
+    .poster {
+      width: 100%;
+      aspect-ratio: 1 / 1.414;
+      background: #fff;
+      color: #1d3557;
+      border-radius: 4px;
+      box-shadow: 0 10px 30px rgba(29,53,87,0.25);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8% 8% 6%;
+      text-align: center;
+      font-family: Georgia, 'Times New Roman', serif;
+    }
+    .poster-ward { font-size: 0.9rem; letter-spacing: 0.08em; text-transform: uppercase; color: #8a7637; }
+    .poster-title { font-size: clamp(1.4rem, 6vw, 2.1rem); line-height: 1.2; margin-top: 0.4rem; font-weight: normal; }
+    .poster img { width: 62%; height: auto; aspect-ratio: 1; display: block; }
+    .poster-url { font-size: 1.15rem; font-variant-numeric: tabular-nums; }
+    .poster-foot { font-size: 0.6rem; color: #6b7684; max-width: 34ch; margin: 0.6rem auto 0; line-height: 1.4; }
+    .poster-acts { display: flex; gap: 0.5rem; justify-content: center; margin-top: 0.8rem; }
+    .poster-acts button { min-height: 44px; padding: 0.5rem 1.2rem; border-radius: 4px; font: inherit; font-size: 0.95rem; cursor: pointer; border: 1px solid #1d3557; }
+    .poster-acts .poster-print { background: #1d3557; color: #fff; }
+    .poster-acts .poster-close { background: #fff; color: #1d3557; }
+    @page { size: portrait; margin: 12mm; }
+    @media print {
+      body.printing > *:not(#poster-overlay) { display: none !important; }
+      body.printing { background: #fff !important; padding: 0 !important; display: block !important; min-height: 0 !important; }
+      body.printing #poster-overlay { display: block !important; position: static; background: none; padding: 0; overflow: visible; }
+      body.printing .poster-wrap { width: 100%; }
+      body.printing .poster { box-shadow: none; border-radius: 0; height: 250mm; aspect-ratio: auto; }
+      body.printing .poster-acts { display: none !important; }
+    }
 
     /* ── Master QR ── */
     .master-qr {
@@ -545,12 +595,39 @@
       <div class="modal-url" id="qr-url"></div>
       <img id="qr-img" src="" alt="QR Code" />
       <br/>
-      <button class="modal-close" onclick="closeModal()">Close</button>
+      <div class="modal-acts">
+        <button class="modal-close" type="button" onclick="openPoster()">Print</button>
+        <button class="modal-close" type="button" onclick="closeModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+<!-- One-link poster: the link's title, a big QR code, the short link and the ward name -->
+  <div class="poster-overlay" id="poster-overlay" role="dialog" aria-modal="true" aria-labelledby="poster-title">
+    <div class="poster-wrap">
+      <div class="poster">
+        <div>
+          <div class="poster-ward" id="poster-ward"></div>
+          <h1 class="poster-title" id="poster-title"></h1>
+        </div>
+        <img id="poster-img" src="" alt="QR code" />
+        <div>
+          <div class="poster-url" id="poster-url"></div>
+          <p class="poster-foot">An independent tool made by Church members. Not an official product of, or sponsored by, The Church of Jesus Christ of Latter-day Saints.</p>
+        </div>
+      </div>
+      <div class="poster-acts">
+        <button class="poster-print" type="button" onclick="window.print()">Print</button>
+        <button class="poster-close" type="button" onclick="closePoster()">Close</button>
+      </div>
     </div>
   </div>
 
   <script>
+    var qrNow = null;
+
     function openQR(label, url) {
+      qrNow = { label: label, url: url };
       document.getElementById('qr-title').textContent = label;
       document.getElementById('qr-url').textContent = url.replace('https://', '');
       const encoded = encodeURIComponent(url);
@@ -567,7 +644,30 @@
       if (e.target === document.getElementById('qr-overlay')) closeModal();
     }
 
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+    /* Print: the link in the open pop-up as a one-page poster, drawn the same way as its QR code. */
+    function openPoster() {
+      if (!qrNow) return;
+      var ward = document.querySelector('.ward-name');
+      document.getElementById('poster-ward').textContent = ward ? ward.textContent : '';
+      document.getElementById('poster-title').textContent = qrNow.label;
+      document.getElementById('poster-url').textContent = qrNow.url.replace('https://', '');
+      var img = document.getElementById('poster-img');
+      img.onload = function () {
+        img.onload = null;
+        window.print();
+      };
+      img.src = 'https://api.qrserver.com/v1/create-qr-code/?size=600x600&margin=10&data=' + encodeURIComponent(qrNow.url);
+      closeModal();
+      document.body.classList.add('printing');
+      document.getElementById('poster-overlay').classList.add('open');
+    }
+
+    function closePoster() {
+      document.getElementById('poster-overlay').classList.remove('open');
+      document.body.classList.remove('printing');
+    }
+
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); closePoster(); } });
   </script>
 </body>
 </html>
